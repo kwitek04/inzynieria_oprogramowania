@@ -23,4 +23,8 @@ public class ZarzadzanieWiezieniami {
                 .findFirst()
                 .orElse(null);
     }
+
+    public int pobierzLiczbeWiezien() {
+        return lista.size();
+    }
 }

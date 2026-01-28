@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Zadanie 2: Testy Modelu z Mockowaniem IDAO")
+@DisplayName("Testy Modelu z Mockowaniem IDAO")
 @Tag("Integration")
 public class TestModelMock {
 

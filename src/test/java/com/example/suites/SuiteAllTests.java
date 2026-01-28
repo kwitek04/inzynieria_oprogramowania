@@ -5,7 +5,7 @@ import org.junit.platform.suite.api.Suite;
 import org.junit.platform.suite.api.SuiteDisplayName;
 
 @Suite
-@SuiteDisplayName("Zestaw: Wszystkie Testy (Zadanie 1 i 2)")
+@SuiteDisplayName("Wszystkie Testy")
 @SelectPackages("com.example.tests")
 public class SuiteAllTests {
 }

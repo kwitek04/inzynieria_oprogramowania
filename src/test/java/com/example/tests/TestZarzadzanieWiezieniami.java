@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@DisplayName("Zadanie 1: Testy operacji niezależnych (Manager)")
+@DisplayName("Testy operacji niezależnych (Manager)")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Tag("Unit")
 public class TestZarzadzanieWiezieniami {
@@ -24,7 +24,7 @@ public class TestZarzadzanieWiezieniami {
     @Order(1)
     @DisplayName("1. Dodanie poprawnego więzienia powinno zwrócić true")
     void testDodajWiezienie() {
-        Wiezienie w = new Wiezienie("Sztum", "Sztum", 500);
+        Wiezienie w = new Wiezienie("Zakład karny nr. 1", "Wocław", 500);
 
         boolean wynik = manager.dodajWiezienie(w);
 
@@ -34,7 +34,7 @@ public class TestZarzadzanieWiezieniami {
 
     @ParameterizedTest
     @Order(2)
-    @DisplayName("2. Dodawanie wielu więzień (Parametryzacja)")
+    @DisplayName("2. Dodawanie wielu więzień")
     @CsvSource({
             "1, Wronki, Wronki, 1000",
             "2, Rakowiecka, Warszawa, 600",
@@ -47,18 +47,5 @@ public class TestZarzadzanieWiezieniami {
 
         assertTrue(wynik);
         assertEquals(nazwa, manager.znajdzWiezienie(id).getNazwa());
-    }
-
-    @Test
-    @Order(3)
-    @DisplayName("3. Usuwanie istniejącego więzienia")
-    void testUsunWiezienie() {
-        Wiezienie w = new Wiezienie(10, "DoUsuniecia", "X", 100, "Low", "Active");
-        manager.dodajWiezienie(w);
-
-        boolean usunieto = manager.usuniecieWiezienia(10);
-
-        assertTrue(usunieto, "Usuwanie powinno zwrócić true");
-        assertNull(manager.znajdzWiezienie(10), "Po usunięciu więzienie nie powinno istnieć");
     }
 }

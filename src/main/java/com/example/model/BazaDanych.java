@@ -4,8 +4,8 @@ public class BazaDanych implements IDAO {
 
     private ZarzadzanieWiezieniami wiezienia;
 
-    public BazaDanych() {
-        this.wiezienia = new ZarzadzanieWiezieniami();
+    public BazaDanych(ZarzadzanieWiezieniami wiezienia) {
+        this.wiezienia = wiezienia;
     }
 
     @Override

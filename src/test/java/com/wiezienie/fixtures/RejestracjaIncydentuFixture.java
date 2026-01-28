@@ -11,11 +11,10 @@ public class RejestracjaIncydentuFixture {
     public void setOpis(String opis) { this.opis = opis; }
 
     public String sprawdzZatwierdzenie() {
-        // Inicjalizacja zależności
+
         BazaDanych baza = new BazaDanych(null);
         Model model = new Model(baza, null);
-        
-        // Wywołanie Fasady
+
         RejestracjaIncydentu fasada = new RejestracjaIncydentu(model, idWieznia, idPracownika, opis);
         return fasada.ZatwierdzDane();
     }

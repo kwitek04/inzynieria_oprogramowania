@@ -15,7 +15,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("Zadanie 2: Testy Kontrolera (DodajWiezienie) z Mockami")
+@DisplayName("Testy Kontrolera (DodajWiezienie) z Mockami")
 public class TestDodajWiezienie {
 
     @Mock
@@ -30,15 +30,12 @@ public class TestDodajWiezienie {
     @Test
     @DisplayName("Scenariusz Pozytywny: Dane poprawne -> Zapisz w Modelu -> Pokaż Sukces")
     void testDodaniePoprawne() {
-        // JEŚLI (Given): Ustawiamy poprawne dane
+        // Poprawne dane
         kontroler.ustawDane("Alcatraz", "USA", 1000, "High", "Active");
-        // Uczymy model, że zapis się uda
         when(mockModel.zapiszRekord(eq("Wiezienie"), any())).thenReturn(true);
 
-        // GDY (When): Klikamy zatwierdź
         kontroler.zatwierdzDodanieWiezienia();
 
-        // WTEDY (Then):
         // 1. Sprawdzamy, czy kontroler kazał modelowi zapisać
         verify(mockModel, times(1)).zapiszRekord(eq("Wiezienie"), any());
         // 2. Sprawdzamy, czy widok wyświetlił sukces
@@ -48,14 +45,12 @@ public class TestDodajWiezienie {
     @Test
     @DisplayName("Scenariusz Negatywny: Pusta nazwa -> Walidacja -> Pokaż Błąd")
     void testDodanieBledneDane() {
-        // JEŚLI: Pusta nazwa, 0 cel (błędne dane)
+        // Błędne dane: Pusta nazwa, 0 cel
         kontroler.ustawDane("", "Polska", 0, "Low", "Active");
 
-        // GDY
         kontroler.zatwierdzDodanieWiezienia();
 
-        // WTEDY:
-        // 1. Model NIE powinien być wołany (walidacja zatrzymała proces)
+        // 1. Model nie powinien być wywołany
         verify(mockModel, never()).zapiszRekord(anyString(), any());
         // 2. Widok powinien pokazać błąd walidacji
         verify(mockWidok).przekazanieInformacji(contains("Błąd walidacji"));
